@@ -1,0 +1,91 @@
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  max-width: 90%;
+}
+
+h1 {
+  color: #ff6b81;
+  font-size: 2.8em;
+  margin-bottom: 10px;
+}
+
+.sub {
+  font-size: 1.3em;
+  color: #ff85a2;
+  margin-bottom: 40px;
+}
+
+.buttons button {
+  font-size: 1.5em;
+  padding: 15px 40px;
+  margin: 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#yesBtn {
+  background: #51cf66;
+  color: white;
+}
+
+#yesBtn:hover {
+  background: #40c057;
+  transform: scale(1.1);
+}
+
+#noBtn {
+  background: #ff6b6b;
+  color: white;
+  position: relative;
+}
+
+#animation {
+  position: relative;
+  height: 350px;           /* increase if your GIFs are taller, e.g. 400px or 450px */
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;               /* space between the two running dogs */
+}
+
+#runnerXiaobai,
+#runnerJimao,
+#hugGif {
+  height: 220px;           /* main size for running GIFs – adjust after testing */
+  max-width: 45%;          /* prevent overflow on small screens */
+  object-fit: contain;
+}
+
+#runnerJimao {
+  transform: scaleX(-1);   /* flip 雞毛 if he's facing the wrong direction in the GIF */
+}
+
+#hugGif {
+  height: 280px;           /* hug can be a bit bigger/centered – adjust as needed */
+  max-width: 60%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#successMsg {
+  font-size: 1.8em;
+  color: #ff6b81;
+  margin-top: 30px;
+}
