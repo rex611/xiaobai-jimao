@@ -35,13 +35,18 @@ h1 {
 }
 
 .choice-btn {
-  font-size: 1.6em;
-  padding: 16px 50px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.8em;
+  padding: 20px 60px;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.4s ease;
-  min-width: 160px;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  box-shadow: 4px 4px 0 #000;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  letter-spacing: 2px;
 }
 
 #yesBtn {
@@ -64,6 +69,44 @@ h1 {
   transform: scale(1.08);
 }
 
+/* Pixel dissolve animations */
+.pixel-dissolve-out {
+  animation: pixelDissolveOut 2.8s steps(10) forwards;
+  pointer-events: none;
+}
+
+.pixel-dissolve-in {
+  animation: pixelDissolveIn 2.8s steps(10) forwards 0.4s;
+}
+
+@keyframes pixelDissolveOut {
+  0%   { opacity: 1; filter: brightness(1) contrast(1) blur(0px); transform: scale(1); }
+  10%  { opacity: 0.92; filter: brightness(1.05) contrast(1.2) blur(0.3px); }
+  20%  { opacity: 0.78; filter: brightness(0.9) contrast(1.5) blur(0.6px); transform: scale(1.01); }
+  30%  { opacity: 0.62; filter: brightness(0.75) contrast(1.9) blur(1px); }
+  40%  { opacity: 0.48; filter: brightness(0.6) contrast(2.4) blur(1.4px); transform: scale(0.99); }
+  50%  { opacity: 0.35; filter: brightness(0.45) contrast(2.9) blur(1.8px); }
+  60%  { opacity: 0.22; filter: brightness(0.3) contrast(3.5) blur(2.3px); }
+  70%  { opacity: 0.12; filter: brightness(0.2) contrast(4.2) blur(2.9px); transform: scale(0.97); }
+  80%  { opacity: 0.05; filter: brightness(0.1) contrast(5) blur(3.6px); }
+  90%  { opacity: 0.02; filter: brightness(0.05) contrast(6) blur(4.5px); }
+  100% { opacity: 0;    filter: brightness(0) contrast(8) blur(6px); transform: scale(0.94); }
+}
+
+@keyframes pixelDissolveIn {
+  0%   { opacity: 0;    filter: brightness(0) contrast(8) blur(6px); transform: scale(0.94); }
+  10%  { opacity: 0.02; filter: brightness(0.05) contrast(6) blur(4.5px); }
+  20%  { opacity: 0.05; filter: brightness(0.1) contrast(5) blur(3.6px); }
+  30%  { opacity: 0.12; filter: brightness(0.2) contrast(4.2) blur(2.9px); transform: scale(0.97); }
+  40%  { opacity: 0.22; filter: brightness(0.3) contrast(3.5) blur(2.3px); }
+  50%  { opacity: 0.35; filter: brightness(0.45) contrast(2.9) blur(1.8px); }
+  60%  { opacity: 0.48; filter: brightness(0.6) contrast(2.4) blur(1.4px); transform: scale(0.99); }
+  70%  { opacity: 0.62; filter: brightness(0.75) contrast(1.9) blur(1px); }
+  80%  { opacity: 0.78; filter: brightness(0.9) contrast(1.5) blur(0.6px); transform: scale(1.01); }
+  90%  { opacity: 0.92; filter: brightness(1.05) contrast(1.2) blur(0.3px); }
+  100% { opacity: 1;    filter: brightness(1) contrast(1) blur(0px); transform: scale(1); }
+}
+
 /* Animation phase */
 #animation {
   position: relative;
@@ -84,7 +127,7 @@ h1 {
 }
 
 #runnerJimao {
-  transform: scaleX(-1);   /* flip if needed */
+  transform: scaleX(-1);
 }
 
 #hugGif {
@@ -100,10 +143,4 @@ h1 {
   font-size: 1.8em;
   color: #ff6b81;
   margin-top: 30px;
-}
-
-/* Fade animation for buttons */
-.fade {
-  opacity: 0;
-  transition: opacity 1.2s ease-in-out;
 }

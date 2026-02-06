@@ -6,7 +6,7 @@ const runnerJimao = document.getElementById("runnerJimao");
 const hugGif = document.getElementById("hugGif");
 const successMsg = document.getElementById("successMsg");
 
-// Function to start the animation (used by both Yes and tricked No)
+// Function to start the dogs animation
 function startAnimation() {
   document.querySelector(".buttons").classList.add("hidden");
   animation.classList.remove("hidden");
@@ -14,52 +14,52 @@ function startAnimation() {
   runnerXiaobai.style.display = "block";
   runnerJimao.style.display = "block";
 
-  // Switch to hug after 3.5 seconds (adjust timing as you like)
   setTimeout(() => {
     runnerXiaobai.style.display = "none";
     runnerJimao.style.display = "none";
     hugGif.classList.remove("hidden");
     successMsg.classList.remove("hidden");
-  }, 3500);
+  }, 3500); // adjust if your GIFs need more/less time
 }
 
-// Clicking YES → directly start animation
+// Clicking YES → go straight to animation
 yesBtn.addEventListener("click", () => {
   startAnimation();
 });
 
-// Clicking NO → swap texts with fade, then start animation
+// Clicking NO → pixel-dissolve + swap + then animation
 noBtn.addEventListener("click", () => {
-  // Add fade class to both buttons
-  yesBtn.classList.add("fade");
-  noBtn.classList.add("fade");
+  // Start dissolve out
+  yesBtn.classList.add("pixel-dissolve-out");
+  noBtn.classList.add("pixel-dissolve-out");
 
-  // After fade-out starts, change texts (but they are still invisible)
+  // Wait most of the dissolve-out before swapping
   setTimeout(() => {
-    // Swap texts
+    // Swap text and colors
     yesBtn.textContent = "No 😢";
     noBtn.textContent = "Yes 💕";
+    yesBtn.style.background = "#ff6b6b";
+    noBtn.style.background = "#51cf66";
 
-    // Change colors too (optional but cute)
-    yesBtn.style.background = "#ff6b6b"; // now red
-    noBtn.style.background = "#51cf66";  // now green
-
-    // Fade back in with new texts
+    // Reset for incoming animation
+    yesBtn.classList.remove("pixel-dissolve-out");
+    noBtn.classList.remove("pixel-dissolve-out");
     yesBtn.style.opacity = "0";
     noBtn.style.opacity = "0";
-    yesBtn.classList.remove("fade");
-    noBtn.classList.remove("fade");
+    yesBtn.style.filter = "brightness(0) contrast(8) blur(6px)";
+    noBtn.style.filter = "brightness(0) contrast(8) blur(6px)";
+    yesBtn.style.transform = "scale(0.94)";
+    noBtn.style.transform = "scale(0.94)";
 
-    // Small delay then fade in
+    // Trigger dissolve in after tiny delay
     setTimeout(() => {
-      yesBtn.style.opacity = "1";
-      noBtn.style.opacity = "1";
-    }, 100);
+      yesBtn.classList.add("pixel-dissolve-in");
+      noBtn.classList.add("pixel-dissolve-in");
 
-    // After swap is visible for a short moment, proceed to animation
-    setTimeout(() => {
-      startAnimation();
-    }, 1800); // give ~1.8s to see the swapped buttons before animation starts
-
-  }, 1200); // match fade-out duration
+      // After dissolve-in finishes, go to animation
+      setTimeout(() => {
+        startAnimation();
+      }, 3200); // ~2.8s animation + small buffer
+    }, 150);
+  }, 2200); // trigger swap after ~80% of dissolve-out
 });
